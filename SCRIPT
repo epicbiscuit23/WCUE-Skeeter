@@ -1,0 +1,408 @@
+-- Made By Epicbiscuit23
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 200, 0, 100)
+frame.Position = UDim2.new(0.5, -100, 0.5, -50)
+frame.BackgroundColor3 = Color3.new(1, 1, 1)
+frame.Parent = screenGui
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 20)
+title.Position = UDim2.new(0, 0, 0, -20)
+title.Text = "It aint free"
+title.TextColor3 = Color3.new(1, 1, 1)
+title.BackgroundColor3 = Color3.new(0, 0, 0)
+title.Parent = frame
+
+local dragging
+local dragInput
+local dragStart
+local startPos
+
+local function update(input)
+    local delta = input.Position - dragStart
+    frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+end
+
+title.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = frame.Position
+
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+title.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+    end
+end)
+
+title.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = false
+        dragInput = nil
+    end
+end)
+
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        update(input)
+    end
+end)
+
+local KeySystem = Instance.new("TextBox")
+KeySystem.Size = UDim2.new(1, 0, 0.5, 0)
+KeySystem.Position = UDim2.new(0, 0, 0, 0)
+KeySystem.Text = "Enter the Key"
+KeySystem.TextColor3 = Color3.new(0, 0, 0)
+KeySystem.BackgroundTransparency = 0.5
+KeySystem.BackgroundColor3 = Color3.new(1, 1, 1)
+KeySystem.TextWrapped = true
+KeySystem.Parent = frame
+
+local SubmitButton = Instance.new("TextButton")
+SubmitButton.Size = UDim2.new(0.5, 0, 0.5, 0)
+SubmitButton.Position = UDim2.new(0, 0, 0.5, 0)
+SubmitButton.Text = "Submit"
+SubmitButton.Parent = frame
+
+local CloseButton = Instance.new("TextButton")
+CloseButton.Size = UDim2.new(0, 20, 0, 20)
+CloseButton.Position = UDim2.new(1, -20, 0, 0)
+CloseButton.Text = "X"
+CloseButton.TextColor3 = Color3.new(1, 1, 1)
+CloseButton.BackgroundColor3 = Color3.new(1, 0, 0)
+CloseButton.Parent = frame
+
+CloseButton.MouseButton1Click:Connect(function()
+    screenGui:Destroy()
+end)
+
+local GetKeyButton = Instance.new("TextButton")
+GetKeyButton.Size = UDim2.new(0.5, 0, 0.5, 0)
+GetKeyButton.Position = UDim2.new(0.5, 0, 0.5, 0)
+GetKeyButton.Text = "Get Key"
+GetKeyButton.Parent = frame
+--------------------------------------------------------------------------
+SubmitButton.MouseButton1Click:Connect(function()
+    local KeySystem = KeySystem.Text
+    if KeySystem == "fucktheprotectionLMAO" then   
+screenGui:Destroy()
+
+--Your Script
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "WCUE SHITTER", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+local Tab = Window:MakeTab({
+	Name = "Teleports",
+	Icon = "rbxassetid://6727607024",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Teleports"
+})
+
+Tab:AddButton({
+	Name = "Teleport to editorrig (everyone can see you in editor)!",
+	Callback = function()
+      		local teleport_table = {
+    location1 = Vector3.new(2394.98438, 1416.75403, 1578.00928, 0.707134187, -0.179719269, -0.683858335, 3.27560201e-12, 0.967159092, -0.254171431, 0.707079232, 0.179733276, 0.683911502), -- your desired position
+    location2 = Vector3.new(2394.98438, 1416.75403, 1578.00928, 0.707134187, -0.179719269, -0.683858335, 3.27560201e-12, 0.967159092, -0.254171431, 0.707079232, 0.179733276, 0.683911502)  -- your desired position
+}
+
+local tween_s = game:GetService('TweenService')
+local tweeninfo = TweenInfo.new(1,Enum.EasingStyle.Linear)
+
+local lp = game.Players.LocalPlayer
+
+function bypass_teleport(v)
+    if lp.Character and 
+    lp.Character:FindFirstChild('HumanoidRootPart') then
+        local cf = CFrame.new(v)
+        local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
+        a:Play()
+        -- a.Completed:Wait()
+        -- print('Teleporting Done!')
+    end
+end
+
+bypass_teleport(teleport_table.location1)
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Shed",
+	Callback = function()
+  	    local teleport_table = {
+        location1 = Vector3.new(-1410.56531, 77.1038437, -306.996552, -1.90734863e-06, -9.23871994e-07, -1, -0.78087461, 0.624687791, 9.23871994e-07, 0.624687791, 0.78087461, -1.90734863e-06), -- your desired position
+        location2 = Vector3.new(-1410.56531, 77.1038437, -306.996552, -1.90734863e-06, -9.23871994e-07, -1, -0.78087461, 0.624687791, 9.23871994e-07, 0.624687791, 0.78087461, -1.90734863e-06)  -- your desired position
+    }
+    
+    local tween_s = game:GetService('TweenService')
+    local tweeninfo = TweenInfo.new(1,Enum.EasingStyle.Linear)
+    
+    local lp = game.Players.LocalPlayer
+    
+    function bypass_teleport(v)
+        if lp.Character and 
+        lp.Character:FindFirstChild('HumanoidRootPart') then
+            local cf = CFrame.new(v)
+            local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
+            a:Play()
+            -- a.Completed:Wait()
+            -- print('Teleporting Done!')
+        end
+    end
+    
+    bypass_teleport(teleport_table.location1)
+end
+})
+
+
+local Tab = Window:MakeTab({
+	Name = "Animations",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+	Name = "Pounce Kit Test",
+	Callback = function()
+      		local Players = game:GetService("Players")
+
+local LocalPlayer = Players.LocalPlayer
+local Character = LocalPlayer.Character
+local Humanoid = Character:WaitForChild("Humanoid")
+
+local Animation = Instance.new("Animation", Character)
+Animation.AnimationId = "rbxassetid://12913965838"
+
+local Track = Humanoid:LoadAnimation(Animation)
+Track:Play()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Cursed eyes LMAO (recommedn with young, app, kit.)",
+	Callback = function()
+      		local Players = game:GetService("Players")
+
+local LocalPlayer = Players.LocalPlayer
+local Character = LocalPlayer.Character
+local Humanoid = Character:WaitForChild("Humanoid")
+
+local Animation = Instance.new("Animation", Character)
+Animation.AnimationId = "rbxassetid://9111004870"
+
+local Track = Humanoid:LoadAnimation(Animation)
+Track:Play()
+  	end    
+})
+
+local Tab = Window:MakeTab({
+	Name = "Custom Tail Animation (Perm)",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+	Name = "Idle woodmouse tail animation",
+	Callback = function()
+        local Players = game:GetService("Players")
+
+        local LocalPlayer = Players.LocalPlayer
+        local Character = LocalPlayer.Character
+        local Humanoid = Character:WaitForChild("Humanoid")
+        
+        local Animation = Instance.new("Animation", Character)
+        Animation.AnimationId = "rbxassetid://10408754833"
+        
+        local Track = Humanoid:LoadAnimation(Animation)
+        Track:Play()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Idle squrriel tail animation",
+	Callback = function()
+        local Players = game:GetService("Players")
+
+        local LocalPlayer = Players.LocalPlayer
+        local Character = LocalPlayer.Character
+        local Humanoid = Character:WaitForChild("Humanoid")
+        
+        local Animation = Instance.new("Animation", Character)
+        Animation.AnimationId = "rbxassetid://14631637248"
+        
+        local Track = Humanoid:LoadAnimation(Animation)
+        Track:Play()
+  	end    
+})
+
+local Tab = Window:MakeTab({
+	Name = "Trolling",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+	Name = "Ragdoll (Press R)",
+	Callback = function()
+      		-- LocalScript
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+-- Function to make the character ragdoll
+local function ragdoll()
+    -- Disable Humanoid controls
+    humanoid.PlatformStand = true
+
+    -- Loop through all parts and joints in the character
+    for _, part in ipairs(character:GetDescendants()) do
+        if part:IsA("Motor6D") then
+            -- Create a BallSocketConstraint to replace the Motor6D
+            local socket = Instance.new("BallSocketConstraint")
+            socket.Name = "RagdollConstraint"
+            socket.Attachment0 = Instance.new("Attachment", part.Part0)
+            socket.Attachment1 = Instance.new("Attachment", part.Part1)
+            socket.Attachment0.CFrame = part.C0
+            socket.Attachment1.CFrame = part.C1
+            socket.Parent = part.Parent
+
+            -- Destroy the Motor6D
+            part:Destroy()
+        end
+    end
+end
+
+-- Detect key press
+local UserInputService = game:GetService("UserInputService")
+
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+    if gameProcessed then return end
+    if input.KeyCode == Enum.KeyCode.R then
+        ragdoll()
+    end
+end)
+
+  	end    
+})
+
+Tab:AddButton({
+	Name = "TP To Everyone Loop (T)",
+	Callback = function()
+      		-- Get the LocalPlayer and UserInputService
+local player = game.Players.LocalPlayer
+local userInputService = game:GetService("UserInputService")
+local runService = game:GetService("RunService")
+
+-- Define a variable to keep track of teleporting state
+local teleporting = false
+
+-- Function to teleport to each player
+local function teleportToPlayers()
+    local players = game.Players:GetPlayers()
+    local index = 1
+
+    while teleporting do
+        if #players > 0 then
+            -- Teleport to the next player
+            local targetPlayer = players[index]
+            if targetPlayer and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                local targetPosition = targetPlayer.Character.HumanoidRootPart.Position
+                if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                    player.Character.HumanoidRootPart.CFrame = CFrame.new(targetPosition + Vector3.new(0, 5, 0)) -- Teleport above the target player
+                end
+            end
+
+            -- Move to the next player
+            index = index + 1
+            if index > #players then
+                index = 1
+            end
+        end
+
+        -- Wait for 0.1 seconds
+        wait(0.1)
+    end
+end
+
+-- Function to handle key input
+local function onInputBegan(input, gameProcessedEvent)
+    if input.KeyCode == Enum.KeyCode.T and not gameProcessedEvent then
+        teleporting = not teleporting
+        if teleporting then
+            teleportToPlayers()
+        end
+    end
+end
+
+-- Connect the input event
+userInputService.InputBegan:Connect(onInputBegan)
+
+  	end    
+})
+
+Tab:AddButton({
+    Name = "Change Teams",
+    Callback = function()
+        local teams = {"ThunderClan", "RiverClan", "ShadowClan", "Windclan", "Rogues&Loners", "Kittypets"}
+        local replicatedStorage = game:GetService("ReplicatedStorage")
+        local teamEvent = replicatedStorage.RemoteEvents.Team
+
+        for _, team in ipairs(teams) do
+            teamEvent:FireServer(team)
+            task.wait(0.1) -- It's good to have a small delay to ensure the server has time to process the request
+        end
+    end
+})
+
+Tab:AddButton({
+	Name = "Change Teams Loop",
+	Callback = function()
+      	local teams = {"ThunderClan", "RiverClan", "ShadowClan", "Windcland", "Rogues&Loners", "Kittypets"}
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local teamEvent = replicatedStorage.RemoteEvents.Team
+while task.wait() do
+    for _, team in ipairs(teams) do
+        teamEvent:FireServer(team)
+        task.wait(0)
+    end
+end
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Change Teams Police",
+	Callback = function()
+        local teams = {"RiverClan", "ShadowClan"}
+        local replicatedStorage = game:GetService("ReplicatedStorage")
+        local teamEvent = replicatedStorage.RemoteEvents.Team
+        while task.wait() do
+            for _, team in ipairs(teams) do
+                teamEvent:FireServer(team)
+                task.wait(0)
+            end
+        end
+  	end    
+})
+
+  end
+end)
+
+GetKeyButton.MouseButton1Click:Connect(function()
+ setclipboard("https://sites.google.com/view/wcueskeeter/home") 
+end) 
